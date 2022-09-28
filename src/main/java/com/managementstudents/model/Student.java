@@ -6,17 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.UUID;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
-@Table(name = "students")
+@Table(name = "tbl_G", uniqueConstraints = {
+        @UniqueConstraint(name = "uq_students_dni", columnNames = "dni"),
+        @UniqueConstraint(name = "uq_students_email", columnNames = "email")
+})
 public class Student {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     @Column(nullable = false, columnDefinition = "varchar(25)")
     private String firstName;
     @Column(nullable = false, columnDefinition = "varchar(25)")
@@ -25,6 +29,8 @@ public class Student {
     private int age;
     @Column(nullable = false, columnDefinition = "varchar(50)")
     private String email;
+    @Column(nullable = false, columnDefinition = "varchar(10)")
+    private String dni;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
