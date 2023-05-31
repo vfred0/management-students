@@ -13,7 +13,7 @@ public interface StudentService {
 
     Optional<StudentDTO> findByAge(int age);
 
-    Optional<StudentDTO> findByEmail(String email);
+    Optional<StudentDTO> findByEmail(String email); 
 
     Optional<StudentDTO> findByGender(Gender gender);
 
